@@ -10,16 +10,32 @@ function App() {
     setTasks(currentTasks => [...currentTasks, description])
     setTask('')
   }
-  return(
+  const deleteTask = (deleted) => {
+    setTasks(currentTasks => currentTasks.filter(item => item !== deleted))
+  }
+  return (
     <div id="container">
       <h3>Todos</h3>
       <form onSubmit={addTask}>
-        <input placeholder='Add new task' 
+        <input placeholder='Add new task'
           value={task}
           onChange={event => setTask(event.target.value)}
         />
       </form>
-      <ul></ul>
+      <ul>
+        {
+          tasks.map(item => (
+            <li key={item}>
+              {item}
+              <button
+                className='deleteButton'
+                onClick={() => deleteTask(item)}>
+                Delete
+              </button>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   )
 }
