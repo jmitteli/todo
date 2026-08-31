@@ -28,7 +28,7 @@ function App() {
             <li key={item}>
               {item}
               <button
-                className='deleteButton'
+                className='delete-button'
                 onClick={() => deleteTask(item)}>
                 Delete
               </button>
