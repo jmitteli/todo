@@ -1,6 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { pool } from './db.js'
+import { hash } from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const __dirname = import.meta.dirname
 
@@ -17,7 +19,9 @@ const insertTestUser = async (user) => {
     )
 }
 
+const getToken = (email) => {
+    return jwt.sign({ email }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' })
+}
 
 
-
-export { initializeTestDb }
+export { initializeTestDb,insertTestUser,getToken }
